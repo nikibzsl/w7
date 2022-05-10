@@ -1,106 +1,29 @@
-console.log(varVariable);
 
-let globalVariable1 = 12;
-
-let globalVariable2 = function () {
-
-    console.log("inside function ", globalVariable1)
-
-    let funVariable1 = "hello"
-    console.log(funVariable1);
-
-    let funVariable2 = function () {
-        console.log("funVariable2 beljese");
-        console.log(funVariable1);
-        console.log(globalVariable1);
-
-        let FuninFunVariable1 = true;
-        console.log(FuninFunVariable1);
-
-        let FuninFunVariable2 = function () {
-            console.log(FuninFunVariable1)
-        }
-
-        FuninFunVariable2();
-    }
-
-    funVariable2() //csak akkor és ott fut le a függvény, ahol meghívjuk (valamin belül, kívül stb.)
-
-
-    if (funVariable1 === "hello") {
-        var blockVariable1 = "bye"
-    } else {
-       // console.log(blockVariable1);
-    } // {}ek blockok, ott rekesztődik el
-
-   console.log(blockVariable1);
+const menuButtonComponent = function(){
+    return `<button id="menu-btn"></button>`
 }
 
-globalVariable2() //ezzel hívjuk meg a let globalVariable2 függvényt
-
-var varVariable = 1;
-
-let letVariable;
-console.log(letVariable); //ha felfele mozgatjuk, referenceError hibaüzenet tolódik a pofánkba
-
-//scope vagy elgépelés a probléma
-
-let letVariable2 = "variable 2";
-    console.log(letVariable2);
-
-const constVariable= "anyád";
-    //constVariable = "hello";
-    console.log(constVariable);
-
-const constObj1 = {};
-// constObj1.key = "value";
-// constObj1 = {key: "value"}; //hibaüzenet
-// {} === {} false de 1 === 1 true 
-// ahánszor ezt leírjuk, annyiszor jön létre új objektum
-console.log(constObj1);
-
-const globalVariable3 = function (parameter1, parameter2) {
-    //parameter: amit tartalmaz azt csak a függvényen belül lehet elérni
-    console.log(parameter1); //itt ki lehet logozni. kívül nem
-    console.log(parameter2);
-    //undefined lesz az alapértéke a parameternek
-    //amennyi parameter, annyi undefined lesz
-
-}
-
-const globalVariable4 = "apple";
-
-
-const globalVariable5 = function () {
-    return "pear"
-}
-//meg kell hívni, ha le akarjuk futtatni
-
-
-//
-
-const globalVariable6 = function () {
-    return "shoes"
-}
-
-globalVariable3(globalVariable5(), globalVariable6()); //mi a scope? (global??)
-
+//komponensre akkor tudunk selectort írni ha benne van a DOMba -> insertadjacenthtml
 
 const loadEvent = function () {
 
     const rootElement= document.getElementById("root")
-    console.log(rootElement);
 
-    //console.log(globalVariable1)
-    rootElement.addEventListener("click", function(event){
-        console.log(event.currentTarget);
-        event.currentTarget.insertAdjacentHTML("beforeend", "clicked,")
-// click esemény külső változóból jön
-//
+    rootElement.insertAdjacentHTML("beforeend", menuButtonComponent());
+
+    const menuButtonElement = document.getElementById("menu-btn");
+
+    menuButtonElement.addEventListener("click", function (event){
+        // event.currentTarget.classList.toggle("clicked");
+        // console.log(rootElement);
+        // console.log(event.currentTarget.parentElement);
+        // console.log(event.currentTarget.closest("#root"));
+
+        event.currentTarget.closest("#root").classList.toggle("menu-opened");
     })
-}
 
-window.addEventListener("load", loadEvent)
+}
+window.addEventListener("load", loadEvent);
 
 /* js scopeok
     block scope

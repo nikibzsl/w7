@@ -1,0 +1,71 @@
+#root {
+    width: 100%;
+    min-height: 100vh;
+
+    background-color: antiquewhite;
+
+    #menu-btn {
+        position: fixed;
+        top: 0;
+        right: 0;
+    
+        width: 60px;
+        height: 60px;
+    
+        background-color: black;
+    
+        &::before,
+        &::after {
+    
+            //ahhoz, hogy a DOMban megjelenjen egy before/after, hozzá kell adni contentet
+            content: "";
+    
+            position: fixed;
+            right: 10px;
+            width: 40px;
+            height: 2px;
+    
+            background-color: white;
+    
+            transition: top 500ms, transform 500ms;
+    
+        }
+    
+        &::before {
+            top: 20px;
+        }
+    
+    
+        &::after {
+            top: 36px;
+        }
+    
+        }
+    
+        &.menu-opened {
+            background-color: burlywood;
+    
+            #menu-btn {
+    
+                background-color: gray;
+    
+                &::before {
+                    top: 28px;
+                    transform: rotate(45deg);
+        
+                }
+        
+                &::after {
+                    top: 28px;
+                    transform: rotate(-45deg);
+        
+                }
+        
+            }
+        }
+
+}
+
+
+
+//40px x 2px széles négyzeteket kell létrehozni
